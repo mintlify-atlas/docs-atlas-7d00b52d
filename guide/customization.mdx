@@ -1,0 +1,135 @@
+---
+title: "Personalizar el sitio: colores, productos y secciones"
+sidebarTitle: "Personalización"
+description: "Guía práctica para personalizar Licorería Santo Pecado: cambiar colores en styles.css, agregar productos y modificar el contenido de las secciones."
+---
+
+Gracias a que **Licorería Santo Pecado** está construido con HTML y CSS puro, sin frameworks de JavaScript ni preprocesadores, cualquier personalización se realiza editando directamente `styles.css` o `index.html`. No es necesario recompilar nada — basta con guardar el archivo y recargar el navegador para ver los cambios al instante.
+
+## Cambiar el esquema de colores
+
+Todo el lenguaje visual del sitio — el rojo intenso de los botones y bordes, el dorado de los títulos y el fondo negro — está definido en `styles.css`. Modifica los valores hexadecimales indicados a continuación para adaptar la paleta a tu marca:
+
+```css styles.css
+/* Color principal de botones y bordes */
+.btn-primary {
+  background-color: #cc0000; /* Cambia aquí el color del botón */
+}
+
+.card {
+  border: 1px solid #ff0000; /* Cambia el borde de las cards */
+}
+
+/* Color de títulos */
+h1, h2, h3 {
+  color: #ffcc00; /* Color dorado de los títulos */
+}
+```
+
+Por ejemplo, para adoptar un esquema de **azul marino**, reemplaza `#cc0000` con `#003087` en `.btn-primary` y `#ffcc00` con `#00b4d8` en los encabezados. Los colores de hover (`.btn-primary:hover` y `.card:hover`) se pueden ajustar de la misma forma para mantener la coherencia visual.
+
+## Agregar un producto nuevo
+
+Los productos se renderizan como columnas Bootstrap dentro de la sección `#productos`. Para añadir un cuarto (o más) productos, sigue estos pasos:
+
+<Steps>
+  <Step title="Abre index.html">
+    Abre `index.html` en tu editor de código preferido.
+  </Step>
+
+  <Step title="Localiza la sección de productos">
+    Busca la etiqueta de apertura de la sección de productos:
+
+    ```html index.html
+    <section id="productos" class="row g-4">
+    ```
+
+    Dentro de ella encontrarás los tres bloques `<div class="col-md-4">` existentes — uno por cada producto actual.
+  </Step>
+
+  <Step title="Copia un bloque de producto existente">
+    Añade el siguiente bloque justo antes del cierre de `</section>`, reemplazando los valores de ejemplo con los datos de tu nuevo producto:
+
+    ```html index.html
+    <div class="col-md-4">
+      <div class="card p-3">
+        <img src="assets/img/tu-imagen.jpg"
+             class="img-fluid card-img-top"
+             alt="Nuevo producto">
+        <h3 class="mt-3">Nombre del Producto</h3>
+        <p>Descripción del producto aquí.</p>
+      </div>
+    </div>
+    ```
+  </Step>
+
+  <Step title="Agrega tu imagen en assets/img/">
+    Copia el archivo de imagen del nuevo producto dentro de la carpeta `assets/img/` del proyecto y actualiza el atributo `src` de la etiqueta `<img>` para que apunte al nombre de archivo correcto (por ejemplo, `assets/img/tequila-plata.jpg`).
+  </Step>
+
+  <Step title="Actualiza el nombre y la descripción">
+    Edita el texto dentro de `<h3>` y `<p>` con el nombre y la descripción real del producto. Guarda el archivo y recarga el navegador para ver el nuevo producto en el grid.
+  </Step>
+</Steps>
+
+## Modificar la promoción activa
+
+La sección de promociones usa el componente Collapse de Bootstrap 5. El texto de la oferta se encuentra dentro del siguiente bloque en `index.html`:
+
+```html index.html
+<div class="collapse mt-3" id="promo">
+  <div class="card card-body bg-dark text-white">
+    ¡Este mes, en compras mayores a $50, recibe un shot gratis!
+  </div>
+</div>
+```
+
+Para actualizar la promoción vigente, edita únicamente el texto dentro del `<div class="card card-body bg-dark text-white">`. No es necesario modificar los atributos `id`, `data-bs-toggle` ni `data-bs-target` — el comportamiento de colapsar/expandir seguirá funcionando sin cambios adicionales.
+
+## Cambiar la fuente tipográfica
+
+La fuente del sitio se define en la regla `body` de `styles.css`:
+
+```css styles.css
+body {
+  font-family: 'Segoe UI', sans-serif; /* Cambia aquí la fuente */
+}
+```
+
+Puedes sustituir `'Segoe UI'` por cualquier fuente del sistema o por una de **Google Fonts**. Para usar Google Fonts, añade primero el `<link>` de importación en el `<head>` de `index.html`:
+
+```html index.html
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+```
+
+Luego actualiza `font-family` en `styles.css`:
+
+```css styles.css
+body {
+  font-family: 'Playfair Display', serif;
+}
+```
+
+## Actualizar los enlaces sociales del footer
+
+El footer del sitio incluye dos enlaces de redes sociales con `href="#"` como marcadores de posición:
+
+```html index.html
+<footer class="text-center bg-light text-dark p-3 mt-5">
+  <p>&copy; 2025 Licorería Santo Pecado</p>
+  <a href="#">Facebook</a> | <a href="#">Instagram</a>
+</footer>
+```
+
+Reemplaza cada `href="#"` con la URL real del perfil del negocio en cada red social. Por ejemplo:
+
+```html index.html
+<a href="https://www.facebook.com/licoreriasantopecado">Facebook</a> |
+<a href="https://www.instagram.com/licoreriasantopecado">Instagram</a>
+```
+
+Los estilos del footer ya están definidos en `styles.css` — los enlaces se muestran en rojo (`#ff0000`) y adquieren subrayado al hacer hover, sin necesidad de CSS adicional.
+
+<Warning>
+  Bootstrap 5.3.3 se carga desde CDN mediante dos etiquetas separadas en `index.html`: el `<link>` del CSS en el `<head>` y el `<script>` del bundle de JS al final del `<body>`. Si actualizas el número de versión en uno de ellos, asegúrate de actualizar **ambas** etiquetas al mismo número de versión para evitar incompatibilidades entre el CSS y los plugins de JavaScript.
+</Warning>

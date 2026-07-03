@@ -1,0 +1,180 @@
+---
+title: "Componentes Bootstrap 5 en Licorería Santo Pecado"
+sidebarTitle: "Componentes"
+description: "Documentación de los componentes Bootstrap 5 usados en el proyecto: Navbar, Cards, formulario con form-control, y Collapse para promociones."
+---
+
+El proyecto **Licorería Santo Pecado** aprovecha cuatro componentes principales de Bootstrap 5: la **Navbar** responsiva para la navegación, las **Cards** para presentar el catálogo de productos, el **formulario de contacto** estilizado con `form-control`, y el **Collapse** para mostrar promociones de forma dinámica. Estos componentes fueron elegidos porque proporcionan interactividad y estructura visual lista para usar, reduciendo la necesidad de escribir JavaScript o CSS personalizado desde cero, y garantizan compatibilidad con todos los tamaños de pantalla.
+
+---
+
+## Navbar
+
+La barra de navegación utiliza las clases de Bootstrap para ser responsiva, permanecer fija durante el scroll y colapsar en un menú hamburguesa en pantallas pequeñas.
+
+```html index.html
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand text-warning" href="#">Santo Pecado</a>
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+```
+
+<CardGroup cols={2}>
+  <Card title="navbar-expand-md" icon="expand">
+    La navbar se muestra desplegada (horizontal) en pantallas de **≥768px**. Por debajo de ese ancho, los links se ocultan y aparece el botón hamburguesa.
+  </Card>
+  <Card title="navbar-dark bg-dark" icon="moon">
+    Establece un **fondo oscuro** (`#212529`) y adapta los iconos y textos internos de Bootstrap a tonos claros para garantizar contraste legible.
+  </Card>
+  <Card title="sticky-top" icon="thumbtack">
+    La navbar **permanece fija en la parte superior** de la ventana al hacer scroll, usando `position: sticky; top: 0`. El usuario siempre tiene acceso a la navegación.
+  </Card>
+  <Card title="navbar-toggler + data-bs-toggle" icon="bars">
+    El **botón hamburguesa** activa el colapso del menú en móviles. `data-bs-toggle="collapse"` y `data-bs-target="#navbarNav"` enlazan el botón con el bloque de navegación sin código JavaScript adicional.
+  </Card>
+</CardGroup>
+
+La clase `ms-auto` aplicada a `<ul class="navbar-nav ms-auto">` empuja todos los links de navegación hacia la **derecha** del contenedor usando `margin-left: auto` dentro del contexto flexbox de Bootstrap.
+
+<Note>
+  Los estilos de `styles.css` sobreescriben el color del `.navbar-brand` de `text-warning` (amarillo) a **rojo** (`#ff0000`) con `!important`, y los `.nav-link` se fuerzan a blanco con un hover dorado (`#ffcc00`).
+</Note>
+
+---
+
+## Cards de Productos
+
+Cada producto del catálogo se presenta dentro de un componente `card` de Bootstrap, enriquecido con estilos personalizados en `styles.css`.
+
+```html index.html
+<div class="col-md-4">
+  <div class="card p-3">
+    <img src="assets/img/imagen1.jpg"
+         class="img-fluid card-img-top"
+         alt="Producto 1">
+    <h3 class="mt-3">Whisky Rojo</h3>
+    <p>Intensamente audaz y suave al paladar,
+       ideal para celebraciones memorables.</p>
+  </div>
+</div>
+```
+
+- **`card`** — aplica el componente card de Bootstrap: fondo blanco, borde sutil y `border-radius` por defecto. Los estilos personalizados de `styles.css` sobreescriben estas propiedades con fondo oscuro y borde rojo.
+- **`p-3`** — añade `padding: 1rem` en todos los lados del card, creando espacio interno alrededor del contenido.
+- **`img-fluid`** — aplica `max-width: 100%; height: auto;` a la imagen para que nunca desborde su contenedor y sea completamente responsiva.
+- **`card-img-top`** — redondea las esquinas **superiores** de la imagen para que encaje visualmente con el borde del card.
+- **`mt-3`** — agrega `margin-top: 1rem` al título `<h3>`, separándolo de la imagen.
+
+Los estilos personalizados que sobreescriben el card son los siguientes:
+
+```css styles.css
+.card {
+  background-color: #1a1a1a;
+  color: #fff;
+  border: 1px solid #ff0000;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+```
+
+---
+
+## Formulario de Contacto
+
+La sección de contacto utiliza los componentes de formulario de Bootstrap 5 para lograr una presentación coherente y funcional.
+
+```html index.html
+<section id="contacto" class="mt-5">
+  <h2>Contáctanos</h2>
+  <form class="mt-3">
+    <div class="mb-3 form-group">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input type="text" class="form-control" id="nombre" required />
+    </div>
+    <div class="mb-3 form-group">
+      <label for="email" class="form-label">Correo electrónico:</label>
+      <input type="email" class="form-control" id="email" required />
+    </div>
+    <div class="mb-3 form-group">
+      <label for="mensaje" class="form-label">Comentarios:</label>
+      <textarea class="form-control" id="mensaje" rows="4" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
+</section>
+```
+
+- **`form-control`** — estiliza los `<input>` y `<textarea>` con bordes redondeados, padding uniforme, ancho del 100% y estados de foco animados.
+- **`form-label`** — alinea y separa correctamente las etiquetas `<label>` respecto a sus campos asociados.
+- **`mb-3`** — aplica `margin-bottom: 1rem` a cada grupo de campo, espaciando verticalmente los controles del formulario.
+- **`required`** — activa la **validación nativa del navegador**: el formulario no se envía si el campo está vacío, mostrando un mensaje de error estándar.
+- **`btn btn-primary`** — botón de acción principal. Bootstrap lo estiliza con fondo azul por defecto; `styles.css` lo sobreescribe a rojo.
+
+Los estilos personalizados del formulario sobreescriben el fondo y el borde de los controles:
+
+```css styles.css
+form input,
+form textarea {
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #ffcc00;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #ff0000;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.6);
+}
+```
+
+---
+
+## Collapse para Promociones
+
+El componente Collapse de Bootstrap permite mostrar u ocultar el contenido de promociones con una animación suave al hacer clic en un botón.
+
+```html index.html
+<section class="mt-5">
+  <button class="btn btn-primary"
+          data-bs-toggle="collapse"
+          data-bs-target="#promo">
+    Ver promociones
+  </button>
+  <div class="collapse mt-3" id="promo">
+    <div class="card card-body bg-dark text-white">
+      ¡Este mes, en compras mayores a $50, recibe un shot gratis!
+    </div>
+  </div>
+</section>
+```
+
+- **`data-bs-toggle="collapse"`** — indica a Bootstrap que este botón controla un elemento colapsable.
+- **`data-bs-target="#promo"`** — apunta al elemento con `id="promo"` que se mostrará u ocultará al hacer clic.
+- **`collapse`** — clase aplicada al contenedor objetivo; Bootstrap gestiona las clases `show`/`hide` y la animación de altura automáticamente.
+- **`card card-body`** — el contenido colapsable se envuelve en un card con `card-body` para obtener `padding: 1rem` interno y una presentación limpia.
+- **`bg-dark text-white`** — fondo oscuro con texto blanco, coherente con la paleta del sitio.
+
+<Note>
+  Todos estos componentes funcionan gracias al bundle `bootstrap.bundle.min.js` cargado desde CDN al final del `<body>` — no se requiere JavaScript adicional ni configuración manual.
+
+  ```html index.html
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  ```
+</Note>

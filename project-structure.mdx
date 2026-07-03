@@ -1,0 +1,76 @@
+---
+title: "Estructura del Proyecto: archivos y directorios"
+sidebarTitle: "Estructura"
+description: "Explora la organización de archivos del proyecto Licorería Santo Pecado: index.html, styles.css y los assets de imagen."
+---
+
+El proyecto **Licorería Santo Pecado** adopta una estructura plana y minimalista: no hay sistemas de módulos, empaquetadores ni carpetas de dependencias. Todos los archivos fuente conviven en un único directorio raíz, lo que facilita la exploración, la edición directa y la distribución del sitio sin pasos de configuración previos.
+
+---
+
+## Árbol de Directorios
+
+```text
+CSS3 avanzado y Bootstrap 5/
+├── index.html
+├── styles.css
+├── assets/
+│   └── img/
+│       └── imagen1.jpg
+└── README.md
+```
+
+---
+
+## Descripción de Archivos
+
+| Archivo | Descripción |
+|---|---|
+| `index.html` | Página principal: estructura HTML5 semántica con todas las secciones del sitio (`<header>`, `<nav>`, `<main>`, `<footer>`). Incluye los CDN de Bootstrap 5 y el enlace a `styles.css`. |
+| `styles.css` | Estilos personalizados: sobreescritura de componentes Bootstrap, definición del tema oscuro (`#000` de fondo, `#ffcc00` títulos, `#cc0000` botones), animaciones con `transition` y `transform: scale()`. |
+| `assets/img/imagen1.jpg` | Imagen de producto utilizada en las tres cards de la sección `#productos`. Se referencia con `class="img-fluid card-img-top"` para que se adapte al ancho del contenedor de forma responsiva. |
+| `README.md` | Descripción general del proyecto, listado de tecnologías empleadas, árbol de directorios y créditos del autor. |
+
+---
+
+## Secciones del HTML
+
+El archivo `index.html` está compuesto por seis bloques estructurales claramente diferenciados:
+
+<AccordionGroup>
+  <Accordion title="<header> — Encabezado principal del negocio">
+    Contiene el título `<h1>` con el nombre **Licorería Santo Pecado** y un párrafo con el eslogan *"Tu tentación favorita en cada copa"*. Aplica las clases de Bootstrap `text-center text-white p-5 bg-dark` para el centrado, color de texto y fondo oscuro. Los títulos reciben color dorado y `text-shadow` desde `styles.css`.
+  </Accordion>
+  <Accordion title="<nav> — Navbar Bootstrap sticky con navegación interna">
+    Implementa la barra de navegación de Bootstrap 5 con las clases `navbar navbar-expand-md navbar-dark bg-dark sticky-top`. El atributo `sticky-top` mantiene la barra visible durante el scroll. En pantallas inferiores a `md` (768 px), el menú se oculta y se despliega mediante un botón hamburguesa que usa `data-bs-toggle="collapse"` apuntando al elemento `#navbarNav`. Los enlaces internos apuntan a `#productos` y `#contacto`.
+  </Accordion>
+  <Accordion title="<section id='productos'> — Galería de productos">
+    Organiza tres cards en un grid responsivo Bootstrap (`row g-4`) con columnas `col-md-4`. Cada card contiene la imagen de producto (`assets/img/imagen1.jpg`), un título `<h3>` y una descripción de texto. Los productos mostrados son **Whisky Rojo**, **Ron Dorado** y **Vino de Reserva**. Las cards reciben borde rojo (`border: 1px solid #ff0000`) y efecto glow en `:hover` definidos en `styles.css`.
+  </Accordion>
+  <Accordion title="<section id='contacto'> — Formulario de contacto">
+    Contiene un formulario HTML5 con tres campos obligatorios (`required`): **Nombre** (`type="text"`), **Correo electrónico** (`type="email"`) y **Comentarios** (`<textarea rows="4">`). Los campos aplican estilos oscuros desde `styles.css`: fondo `#222`, borde `#ffcc00` en reposo y borde `#ff0000` con `box-shadow` rojo al recibir foco. El botón de envío hereda los estilos personalizados de `.btn-primary` con animación de escala.
+  </Accordion>
+  <Accordion title="<section> (Promociones) — Panel colapsable">
+    Un botón con `data-bs-toggle="collapse"` y `data-bs-target="#promo"` controla la visibilidad de un `<div class="collapse">` que contiene la oferta del mes: *"¡Este mes, en compras mayores a $50, recibe un shot gratis!"*. El panel utiliza `card card-body bg-dark text-white` y no requiere código JavaScript personalizado; el comportamiento lo gestiona Bootstrap 5 de forma nativa.
+  </Accordion>
+  <Accordion title="<footer> — Pie de página con redes sociales">
+    Muestra el aviso de copyright *© 2025 Licorería Santo Pecado* y dos enlaces de texto plano (sin URL definitiva) a **Facebook** e **Instagram**, separados por un carácter `|`. Los enlaces están estilizados en rojo (`color: #ff0000`) y muestran subrayado al pasar el cursor, definido en la regla `footer a:hover` de `styles.css`.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## CDN de Bootstrap 5
+
+Bootstrap 5.3.3 se integra directamente desde CDN en el `<head>` y al final del `<body>` del documento, sin necesidad de instalación local:
+
+```html index.html
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+```
+
+El paquete `bootstrap.bundle.min.js` incluye **Popper.js** integrado, lo que habilita los componentes interactivos como el Navbar colapsable y el Collapse de promociones sin dependencias adicionales.
+
+<Note>
+  Bootstrap se carga desde CDN sin proceso de instalación local ni Node.js. Esto significa que el proyecto no tiene `package.json`, `node_modules` ni pasos de build — cualquier editor de texto y un navegador son suficientes para trabajar con él.
+</Note>

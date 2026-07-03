@@ -1,0 +1,48 @@
+{
+  "projectType": "frontend",
+  "projectName": "Licorería Santo Pecado",
+  "projectDescription": "A responsive single-page website for a liquor store, built with HTML5, CSS3 advanced techniques, and Bootstrap 5.",
+  "theme": "willow",
+  "primaryColor": "#cc0000",
+  "lightColor": "#ffcc00",
+  "darkColor": "#1a1a1a",
+  "navigation": {
+    "groups": [
+      {
+        "group": "Introducción",
+        "pages": ["introduction", "project-structure"]
+      },
+      {
+        "group": "Diseño y Estilos",
+        "pages": ["design/css3-techniques", "design/color-palette", "design/typography-layout"]
+      },
+      {
+        "group": "Bootstrap 5",
+        "pages": ["bootstrap/components", "bootstrap/responsive-grid", "bootstrap/utilities"]
+      },
+      {
+        "group": "Guía de Desarrollo",
+        "pages": ["guide/getting-started", "guide/customization", "guide/deployment"]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Responsive design using Bootstrap 5 grid system",
+    "Custom CSS3 animations and hover transitions",
+    "Sticky dark navigation bar with collapsible mobile menu",
+    "Product showcase cards with hover effects and red glow shadows",
+    "Contact form with styled inputs and focus effects",
+    "Bootstrap collapsible promotions section",
+    "Dark-themed UI with gold and red accent colors",
+    "Footer with social media links"
+  ],
+  "publicApiSurface": [
+    "index.html — main entry point",
+    "styles.css — custom CSS3 overrides and animations",
+    "assets/img/ — image assets directory",
+    "Bootstrap 5.3.3 — CDN-loaded CSS and JS bundle",
+    "#productos — products section anchor",
+    "#contacto — contact form section anchor",
+    "#promo — collapsible promotions section"
+  ]
+}

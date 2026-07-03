@@ -1,0 +1,104 @@
+---
+title: "Despliegue del sitio en hosting estático"
+sidebarTitle: "Despliegue"
+description: "Cómo publicar Licorería Santo Pecado en GitHub Pages, Netlify o Vercel. Opciones gratuitas de hosting para sitios estáticos sin backend."
+---
+
+**Licorería Santo Pecado** es un sitio completamente estático — solo contiene HTML, CSS e imágenes, sin código del lado del servidor ni base de datos. Esto significa que puede publicarse de forma gratuita en cualquier servicio de hosting estático en cuestión de minutos, sin configuración de servidor ni variables de entorno.
+
+## Opciones de hosting
+
+<CardGroup cols={3}>
+  <Card title="GitHub Pages" icon="github">
+    Gratuito para repositorios públicos. Se activa directamente desde la configuración del repositorio en [github.com/pages](https://pages.github.com) y sirve el sitio desde la misma rama donde vive el código.
+  </Card>
+  <Card title="Netlify" icon="cloud">
+    Soporta deploy mediante arrastrar y soltar la carpeta del proyecto, o conexión continua a GitHub para publicar automáticamente en cada push a la rama principal.
+  </Card>
+  <Card title="Vercel" icon="triangle">
+    Deploy automático desde GitHub con generación de URL de previsualización por cada rama o pull request, ideal para revisar cambios antes de publicar en producción.
+  </Card>
+</CardGroup>
+
+## GitHub Pages
+
+GitHub Pages es la opción más directa si el proyecto ya se encuentra en un repositorio público de GitHub.
+
+<Steps>
+  <Step title="Asegúrate de que el repositorio es público">
+    En GitHub, abre el repositorio y verifica que su visibilidad sea **Public**. GitHub Pages no está disponible para repositorios privados en el plan gratuito.
+  </Step>
+
+  <Step title="Accede a la configuración de Pages">
+    En la página principal del repositorio, haz clic en la pestaña **Settings** y luego en **Pages** en el menú lateral izquierdo.
+  </Step>
+
+  <Step title="Configura la rama de publicación">
+    En la sección **Branch**, selecciona `main` como rama fuente y la carpeta `/root` como directorio de publicación. Haz clic en **Save**.
+  </Step>
+
+  <Step title="Guarda los cambios">
+    Haz clic en el botón **Save** para confirmar la configuración. GitHub iniciará el proceso de publicación automáticamente.
+  </Step>
+
+  <Step title="Espera la publicación y obtén tu URL">
+    Después de 1–2 minutos, GitHub Pages publicará el sitio y mostrará la URL en la misma sección **Pages**:
+
+    ```
+    https://tu-usuario.github.io/CSS3-avanzado-y-Bootstrap-5/
+    ```
+
+    Sustituye `tu-usuario` por tu nombre de usuario real de GitHub.
+  </Step>
+</Steps>
+
+<Note>
+  El archivo `index.html` del proyecto se encuentra dentro del subdirectorio `CSS3 avanzado y Bootstrap 5/`, no en la raíz del repositorio. Para que GitHub Pages lo sirva correctamente desde `/root`, considera mover los archivos (`index.html`, `styles.css` y la carpeta `assets/`) a la raíz del repositorio, o utilizar la carpeta `/docs` como directorio de publicación si reorganizas el proyecto de esa forma.
+</Note>
+
+## Netlify (Drag & Drop)
+
+Netlify ofrece la forma más rápida de publicar el sitio sin necesidad de línea de comandos ni configuración adicional.
+
+<Steps>
+  <Step title="Crea una cuenta en Netlify">
+    Visita [https://netlify.com](https://netlify.com) y regístrate con tu cuenta de GitHub, GitLab o correo electrónico. El plan gratuito es suficiente para este proyecto.
+  </Step>
+
+  <Step title="Arrastra la carpeta del proyecto al dashboard">
+    En el dashboard de Netlify, localiza el área que indica **"Drag and drop your site output folder here"**. Arrastra la carpeta `CSS3 avanzado y Bootstrap 5/` (la que contiene `index.html`) directamente a esa zona desde tu explorador de archivos.
+  </Step>
+
+  <Step title="Obtén tu URL pública">
+    Netlify desplegará el sitio en segundos y generará automáticamente una URL pública con un nombre aleatorio, por ejemplo:
+
+    ```
+    https://amazing-name-123456.netlify.app
+    ```
+
+    Puedes renombrar el sitio desde **Site settings > Site details > Change site name**.
+  </Step>
+
+  <Step title="Conecta GitHub para deploys automáticos (opcional)">
+    Para que Netlify publique una nueva versión del sitio automáticamente cada vez que hagas push al repositorio, ve a **Site settings > Build & deploy > Continuous deployment** y conecta el repositorio de GitHub. A partir de ese momento, cada push a `main` desencadenará un nuevo deploy sin intervención manual.
+  </Step>
+</Steps>
+
+## Consideraciones antes del deploy
+
+Antes de subir los archivos a cualquier plataforma, verifica los siguientes puntos para asegurarte de que el sitio funcione correctamente en producción:
+
+- **Imágenes incluidas:** Asegúrate de que todos los archivos de `assets/img/` — incluyendo `imagen1.jpg` y cualquier imagen que hayas añadido — estén presentes en la carpeta que subirás al hosting.
+- **Rutas relativas:** Las rutas de imágenes en `index.html` usan la forma relativa `assets/img/imagen1.jpg`, lo que las hace compatibles con hosting estático sin necesidad de configurar ninguna URL base.
+- **Bootstrap desde CDN:** El CSS y el JS de Bootstrap 5.3.3 se cargan desde `cdn.jsdelivr.net`. No necesitas incluir ningún archivo de Bootstrap en el paquete que subes al hosting — solo asegúrate de que el sitio desplegado tenga acceso a internet.
+- **Formulario de contacto sin backend:** El `<form>` de la sección `#contacto` actualmente no envía datos a ningún servidor. Para recibir mensajes reales, considera integrar [Formspree](https://formspree.io) o activar **Netlify Forms** (ver tip a continuación).
+
+<Tip>
+  Con **Netlify Forms**, activar la captura de envíos del formulario de contacto es tan sencillo como añadir el atributo `netlify` a la etiqueta `<form>` en `index.html`:
+
+  ```html index.html
+  <form class="mt-3" netlify>
+  ```
+
+  Netlify detectará automáticamente el formulario durante el deploy y comenzará a capturar los envíos. Podrás consultarlos en el dashboard bajo **Forms**, sin necesidad de escribir ningún código de backend ni configurar un servidor de correo.
+</Tip>

@@ -1,0 +1,67 @@
+---
+title: "Licorería Santo Pecado: sitio web con CSS3 y Bootstrap 5"
+sidebarTitle: "Introducción"
+description: "Conoce el proyecto Licorería Santo Pecado, una página web moderna construida con HTML5, CSS3 avanzado y Bootstrap 5 para mostrar productos de licorería."
+---
+
+**Licorería Santo Pecado** es un sitio web de una sola página (SPA estático) diseñado para promocionar los productos y la identidad de una licorería. El proyecto está orientado a desarrolladores front-end que deseen aprender o referenciar técnicas avanzadas de CSS3 junto con el sistema de componentes de Bootstrap 5. No requiere back-end, framework de JavaScript ni proceso de compilación: basta con abrir `index.html` en cualquier navegador moderno para ver el resultado final.
+
+El sitio combina un **tema oscuro de alto contraste** con rojo carmesí (`#cc0000`) y dorado (`#ffcc00`), animaciones de transición fluidas y una maquetación completamente responsiva, logrando una experiencia visual atractiva con muy pocas líneas de código.
+
+---
+
+## Tecnologías Utilizadas
+
+<CardGroup cols={3}>
+  <Card title="HTML5" icon="html5">
+    Semántica moderna con elementos como `<header>`, `<nav>`, `<main>`, `<section>` y `<footer>`. El documento declara `lang="es"` y viewport adaptable para dispositivos móviles.
+  </Card>
+  <Card title="CSS3 Avanzado" icon="css3">
+    Hoja de estilos personalizada (`styles.css`) que aplica `transition`, `transform: scale()`, `box-shadow` con canal alfa, `text-shadow` y paleta de variables de color para el tema oscuro.
+  </Card>
+  <Card title="Bootstrap 5" icon="bootstrap">
+    Versión 5.3.3 cargada vía CDN. Se utilizan el sistema de grid (`col-md-4`), componentes Navbar, Card, Button, Collapse y clases utilitarias de espaciado y tipografía.
+  </Card>
+</CardGroup>
+
+---
+
+## Características Principales
+
+A continuación se detallan las funcionalidades clave identificadas directamente en el código fuente del proyecto:
+
+- **Diseño responsivo con Bootstrap 5 grid** — La sección de productos usa `row g-4` con columnas `col-md-4`, adaptándose de una columna en móvil a tres columnas en pantallas medianas y superiores.
+- **Animaciones CSS3 (`transition`, `transform: scale`)** — Los botones `.btn-primary` y las cards `.card` aplican `transition: all 0.3s ease-in-out` combinado con `transform: scale(1.05)` y `scale(1.02)` respectivamente en el estado `:hover`.
+- **Navbar sticky con colapso en móviles** — La barra de navegación usa `navbar-expand-md sticky-top` de Bootstrap. En pantallas pequeñas se oculta y se activa mediante `data-bs-toggle="collapse"` apuntando a `#navbarNav`.
+- **Cards de productos con hover glow** — Al pasar el cursor sobre una card, se aplica `box-shadow: 0 0 15px rgba(255, 0, 0, 0.3)`, generando un halo rojo característico del branding de la tienda.
+- **Formulario de contacto con estilos oscuros y foco en `#ff0000`** — Los campos `<input>` y `<textarea>` tienen fondo `#222` y borde `#ffcc00`. Al recibir foco, el borde cambia a `#ff0000` con un `box-shadow: 0 0 5px rgba(255, 0, 0, 0.6)`.
+- **Sección de promociones colapsable** — Un botón con `data-bs-toggle="collapse"` y `data-bs-target="#promo"` controla la visibilidad de un panel oscuro que muestra la promoción del mes, sin JavaScript adicional.
+- **Tema oscuro completo** — El cuerpo del documento tiene `background-color: #000` y `color: #fff`. Los encabezados (`h1`, `h2`, `h3`) se renderizan en `#ffcc00` con `text-shadow`, y los botones primarios usan `#cc0000` como color base.
+
+---
+
+## Estructura de Secciones
+
+El documento HTML está organizado en tres grandes bloques visuales:
+
+**Encabezado y navegación**
+
+El `<header>` muestra el nombre del negocio y su eslogan (*"Tu tentación favorita en cada copa"*) sobre fondo oscuro. Inmediatamente debajo, el `<nav>` sticky permanece visible durante el scroll y provee acceso rápido a las secciones internas de la página.
+
+**Contenido principal (`<main>`)**
+
+Contiene tres secciones independientes dentro de un contenedor Bootstrap con padding vertical (`py-5`):
+
+1. **Productos** — galería de tres cards con imagen, nombre y descripción de cada licor.
+2. **Contacto** — formulario con validación HTML5 nativa (`required`) para nombre, correo electrónico y comentarios.
+3. **Promociones** — panel desplegable accionado por un botón, que revela la oferta vigente.
+
+**Pie de página (`<footer>`)**
+
+Muestra el copyright del año 2025 y enlaces a las redes sociales Facebook e Instagram, estilizados en rojo (`#ff0000`) con subrayado al pasar el cursor.
+
+---
+
+<Tip>
+  No se requiere servidor ni proceso de compilación — el proyecto funciona directamente en el navegador. Basta con clonar o descargar el repositorio y abrir `index.html` con doble clic, o servirlo con cualquier servidor estático local como la extensión Live Server de VS Code.
+</Tip>

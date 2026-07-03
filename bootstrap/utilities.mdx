@@ -1,0 +1,111 @@
+---
+title: "Clases Utilitarias de Bootstrap 5 utilizadas"
+sidebarTitle: "Utilidades"
+description: "Referencia de las clases utilitarias de Bootstrap 5 empleadas en Licorería Santo Pecado: espaciado, colores, alineación y display."
+---
+
+Las **clases utilitarias** de Bootstrap 5 son clases de propósito único que aplican una sola propiedad CSS de forma directa en el HTML, sin necesidad de escribir reglas adicionales en una hoja de estilos. En **Licorería Santo Pecado** se usan extensamente para controlar el espaciado entre secciones, los colores de fondo y texto, la alineación de elementos y el comportamiento responsivo de las imágenes. Gracias a ellas, el layout se construye de manera declarativa y consistente a lo largo de todo el proyecto.
+
+<Info>
+  Las clases utilitarias de Bootstrap 5 siguen una convención sistemática: `{propiedad}{lado}-{tamaño}`. Por ejemplo, `mt-3` = **m**argin-**t**op, tamaño **3** = `1rem`. Esta lógica aplica a todas las propiedades de espaciado (`m`, `p`) con sus lados (`t`, `b`, `s`, `e`, `x`, `y`) y tamaños del `0` al `5` (más `auto`).
+</Info>
+
+---
+
+## Espaciado (Spacing)
+
+Las clases de espaciado son las más usadas en el proyecto. Controlan márgenes y paddings sin necesidad de CSS personalizado.
+
+| Clase | Propiedad CSS | Valor | Uso en el proyecto |
+|---|---|---|---|
+| `p-5` | `padding` | `3rem` | Header principal (`<header class="... p-5">`) |
+| `py-5` | `padding-top` / `padding-bottom` | `3rem` | Main container (`<main class="container py-5">`) |
+| `p-3` | `padding` | `1rem` | Cards de productos (`<div class="card p-3">`) |
+| `mt-3` | `margin-top` | `1rem` | Título del producto, formulario y card collapse |
+| `mt-5` | `margin-top` | `3rem` | Secciones de contacto y promociones |
+| `mb-3` | `margin-bottom` | `1rem` | Grupos de campos del formulario |
+| `ms-auto` | `margin-left` | `auto` | Alinea los nav links a la derecha en la navbar |
+
+Ejemplo de cómo se encadenan varias clases de espaciado en el header y el footer del proyecto:
+
+```html index.html
+<header class="text-center text-white p-5 bg-dark">
+  <h1>Licorería Santo Pecado</h1>
+  <p>Tu tentación favorita en cada copa</p>
+</header>
+
+<footer class="text-center bg-light text-dark p-3 mt-5">
+  <p>&copy; 2025 Licorería Santo Pecado</p>
+  <a href="#">Facebook</a> | <a href="#">Instagram</a>
+</footer>
+```
+
+---
+
+## Color y Fondo
+
+Bootstrap 5 incluye utilidades para aplicar colores de fondo y de texto de forma semántica, asegurando contraste y coherencia visual.
+
+| Clase | Uso en el proyecto |
+|---|---|
+| `bg-dark` | Fondo oscuro del `<header>`, la `<nav>` y la card de promociones |
+| `bg-light` | Fondo claro del `<footer>` |
+| `text-white` | Texto blanco en el header y en la card de promociones |
+| `text-dark` | Texto oscuro en el footer |
+| `text-warning` | Color dorado (`#ffc107`) en `.navbar-brand` "Santo Pecado" |
+| `text-center` | Centrado de texto en el header y el footer |
+
+```html index.html
+<header class="text-center text-white p-5 bg-dark">
+  <h1>Licorería Santo Pecado</h1>
+  <p>Tu tentación favorita en cada copa</p>
+</header>
+```
+
+```html index.html
+<div class="card card-body bg-dark text-white">
+  ¡Este mes, en compras mayores a $50, recibe un shot gratis!
+</div>
+```
+
+<Note>
+  Aunque Bootstrap define `text-warning` como amarillo dorado, `styles.css` sobreescribe `.navbar-brand` con `color: #ff0000 !important`, de modo que en tiempo de ejecución el brand aparece en **rojo** en lugar del dorado original de Bootstrap.
+
+  ```css styles.css
+  .navbar-brand {
+    color: #ff0000 !important;
+  }
+  ```
+</Note>
+
+---
+
+## Display y Flex
+
+Bootstrap 5 expone las propiedades de alineación flexbox como clases utilitarias, lo que permite controlar la distribución de elementos hijos sin escribir CSS.
+
+```html index.html
+<ul class="navbar-nav ms-auto">
+  <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
+  <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+</ul>
+```
+
+La clase `ms-auto` aplicada al `<ul>` dentro del contenedor flex de la navbar asigna `margin-left: auto`, lo que consume todo el espacio disponible a la izquierda y **empuja los links de navegación hacia el extremo derecho** de la barra. Este patrón es idiomático en Bootstrap para alinear grupos de elementos en un contenedor flex sin usar `justify-content`.
+
+---
+
+## Imagen Responsiva
+
+Las imágenes de los productos utilizan dos clases utilitarias de Bootstrap para integrarse correctamente en el layout responsive:
+
+```html index.html
+<img src="assets/img/imagen1.jpg"
+     class="img-fluid card-img-top"
+     alt="Producto 1">
+```
+
+- **`img-fluid`** — aplica `max-width: 100%; height: auto;` a la imagen. Esto garantiza que la imagen **nunca desborde su contenedor** y que su proporción se mantenga intacta al redimensionar la ventana.
+- **`card-img-top`** — redondea únicamente las **esquinas superiores** de la imagen (`border-top-left-radius` y `border-top-right-radius`) para que encaje visualmente con el borde del componente `card` que la contiene.
+
+Estas dos clases trabajan juntas para que cada imagen del catálogo sea completamente responsiva y esté visualmente integrada con el card que la envuelve.

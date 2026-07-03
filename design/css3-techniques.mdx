@@ -1,0 +1,98 @@
+---
+title: "Técnicas CSS3 Avanzadas: animaciones y transiciones"
+sidebarTitle: "Técnicas CSS3"
+description: "Explora las técnicas avanzadas de CSS3 usadas en Licorería Santo Pecado: transiciones, transform, box-shadow animados y efectos de foco."
+---
+
+El archivo `styles.css` de **Licorería Santo Pecado** aplica un conjunto cuidadosamente seleccionado de propiedades CSS3 modernas para dar vida a la interfaz. Las tres pilares principales son las **transiciones** suaves que animan cada cambio de estado, las transformaciones con **`transform`** que añaden profundidad física a los elementos, y las sombras dinámicas con **`box-shadow`** que generan resplandores de color. Juntas, estas técnicas convierten una página estática en una experiencia interactiva y elegante.
+
+## Transiciones en botones
+
+Los botones de acción son el punto de contacto más directo con el usuario. La regla `.btn-primary` define una transición global sobre todas las propiedades para que cualquier cambio visual ocurra de forma fluida, mientras que el pseudo-selector `:hover` aplica un leve zoom para dar retroalimentación táctil.
+
+```css styles.css
+.btn-primary {
+  background-color: #cc0000;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #ff0000;
+  transform: scale(1.05);
+}
+```
+
+- **`transition: all 0.3s ease-in-out`** — anima *todas* las propiedades modificables (color, tamaño, opacidad…) durante 300 ms con una curva que acelera al inicio y desacelera al final, produciendo un movimiento natural.
+- **`transform: scale(1.05)`** — escala el botón al 105% de su tamaño original en el eje X e Y, creando la sensación de que el botón "emerge" hacia el usuario.
+
+## Efectos en cards de productos
+
+Las tarjetas de productos combinan un borde rojo permanente con un efecto de elevación y resplandor en hover, reforzando la identidad visual de la marca.
+
+```css styles.css
+.card {
+  background-color: #1a1a1a;
+  color: #fff;
+  border: 1px solid #ff0000;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+```
+
+- **`box-shadow: 0 0 15px rgba(255, 0, 0, 0.3)`** — proyecta un halo rojo semitransparente alrededor de toda la tarjeta. Los valores `0 0` indican que no hay desplazamiento horizontal ni vertical; el radio de difuminado de `15px` crea una aureola suave.
+- **`transform: scale(1.02)`** — combinado con el halo, logra que la card parezca "levantarse" del fondo oscuro, guiando la atención del usuario hacia el producto que está explorando.
+
+## Estilos de formulario con foco dinámico
+
+Los campos del formulario de contacto usan un sistema de doble señalización visual: un borde dorado en estado normal que cambia a rojo intenso con glow al recibir el foco del teclado o el clic.
+
+```css styles.css
+form input,
+form textarea {
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #ffcc00;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #ff0000;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.6);
+}
+```
+
+- **Estado normal** — el borde dorado (`#ffcc00`) sobre fondo casi negro (`#222`) crea suficiente contraste para que el campo sea legible, siguiendo las pautas de accesibilidad visual.
+- **Estado `:focus`** — el borde cambia a rojo (`#ff0000`) y el `box-shadow` de `rgba(255,0,0,0.6)` añade una intensidad significativamente mayor que la de las cards (0.6 vs 0.3), señalizando claramente al usuario qué campo está activo.
+
+## Text-shadow en headings
+
+Los títulos de sección reciben una sombra de texto sutil que añade tridimensionalidad a la tipografía dorada sobre fondo negro.
+
+```css styles.css
+h1, h2, h3 {
+  color: #ffcc00;
+  text-shadow: 1px 1px 3px #000;
+}
+```
+
+El `text-shadow` con desplazamiento de `1px 1px` y radio de `3px` en negro puro proyecta una sombra apenas perceptible pero suficiente para separar visualmente las letras doradas del fondo oscuro, aumentando la legibilidad y la sensación de profundidad en encabezados como "Licorería Santo Pecado" o "Contáctanos".
+
+## Resumen de propiedades CSS3 usadas
+
+| Propiedad CSS3 | Uso en el proyecto |
+|---|---|
+| `transition` | Animación suave en botones y cards |
+| `transform: scale()` | Efecto de zoom en hover |
+| `box-shadow` | Resplandor rojo en cards y foco de inputs |
+| `text-shadow` | Profundidad visual en títulos |
+| `border-radius` | Esquinas redondeadas en cards |
+
+<Tip>
+  Usar `ease-in-out` como función de tiempo en las transiciones produce animaciones con aceleración y desaceleración graduales, imitando el movimiento físico natural de los objetos. Es preferible a `linear` (que se percibe mecánico) o `ease-in` / `ease-out` por sí solos cuando se quiere una sensación equilibrada tanto al entrar como al salir del estado hover.
+</Tip>

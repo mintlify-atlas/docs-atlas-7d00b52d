@@ -1,0 +1,87 @@
+---
+title: "Grid Responsivo de Bootstrap 5 en el proyecto"
+sidebarTitle: "Grid Responsivo"
+description: "Cómo el sistema de grid de Bootstrap 5 organiza los productos en columnas responsivas que se apilan en móviles y se distribuyen en escritorio."
+---
+
+Bootstrap 5 incluye un sistema de grid de **12 columnas** basado en flexbox que permite construir layouts responsivos mediante clases declarativas, sin escribir media queries manualmente. En **Licorería Santo Pecado**, el grid organiza el catálogo de tres productos en columnas iguales que ocupan el 100% del ancho en pantallas pequeñas y se distribuyen en tres columnas lado a lado a partir de la resolución `md` (≥768px). Esto garantiza una experiencia de lectura óptima tanto en móviles como en escritorio.
+
+---
+
+## El Grid de Productos
+
+La sección de productos usa directamente las clases `row`, `g-4` y `col-md-4` para estructurar el catálogo:
+
+```html index.html
+<section id="productos" class="row g-4">
+  <div class="col-md-4">
+    <!-- Whisky Rojo -->
+  </div>
+  <div class="col-md-4">
+    <!-- Ron Dorado -->
+  </div>
+  <div class="col-md-4">
+    <!-- Vino de Reserva -->
+  </div>
+</section>
+```
+
+Nótese que la propia etiqueta `<section>` actúa como contenedor `row`, eliminando la necesidad de un `<div>` intermedio y simplificando el HTML semántico del proyecto.
+
+---
+
+## Comportamiento por Breakpoints
+
+La clase `col-md-4` define el comportamiento responsivo de cada columna según el ancho de la ventana:
+
+| Breakpoint | Clase | Ancho de columna | Columnas por fila |
+|---|---|---|---|
+| Extra Small (\<576px) | (sin clase) | 100% | 1 |
+| Small (\<768px) | (sin clase) | 100% | 1 |
+| Medium (≥768px) | `col-md-4` | 33.3% | 3 |
+| Large (≥992px) | `col-md-4` | 33.3% | 3 |
+| Extra Large (≥1200px) | `col-md-4` | 33.3% | 3 |
+
+En móviles, cada card ocupa el **ancho completo** de la pantalla y las tres cards se apilan verticalmente. A partir de `md`, las tres cards se distribuyen en una sola fila, cada una ocupando exactamente **4 de las 12 columnas** disponibles (4 × 3 = 12).
+
+---
+
+## Clases de Grid Usadas
+
+<CardGroup cols={3}>
+  <Card title="row" icon="table-columns">
+    Activa el sistema de grid mediante `display: flex; flex-wrap: wrap`. Todos los `col-*` directos deben estar dentro de un `row` para funcionar correctamente.
+  </Card>
+  <Card title="g-4" icon="border-all">
+    Aplica **gutters** (espaciado) de `1.5rem` tanto entre columnas como entre filas. Utiliza variables CSS de Bootstrap para el control preciso del gap horizontal y vertical.
+  </Card>
+  <Card title="col-md-4" icon="grip">
+    Define una columna que ocupa **4/12 (33.3%)** del ancho disponible en breakpoints `md` y superiores. Por debajo de `md` no tiene clase asignada, por lo que la columna ocupa el 100% del ancho.
+  </Card>
+</CardGroup>
+
+---
+
+## Container Principal
+
+El elemento `<main>` envuelve todo el contenido con un `container` que establece el ancho máximo y el centrado del layout:
+
+```html index.html
+<main class="container py-5">
+```
+
+- **`container`** — limita el ancho máximo del contenido según el breakpoint activo (por ejemplo, 960px en `md`, 1140px en `lg`) y centra el bloque con `margin-left: auto; margin-right: auto`. Garantiza que el contenido nunca quede pegado a los bordes de la pantalla.
+- **`py-5`** — agrega `padding-top: 3rem` y `padding-bottom: 3rem` al `<main>`, creando un espacio vertical generoso que separa el contenido de la navbar y del footer.
+
+<Tip>
+  Para agregar una cuarta card de producto, solo añade un nuevo `<div class="col-md-4">` dentro de `<section id="productos" class="row g-4">`. Bootstrap redistribuye el layout automáticamente: en escritorio, la cuarta card comenzará una segunda fila, y en móviles simplemente se apilará debajo de las anteriores.
+
+  ```html index.html
+  <section id="productos" class="row g-4">
+    <div class="col-md-4"><!-- Whisky Rojo --></div>
+    <div class="col-md-4"><!-- Ron Dorado --></div>
+    <div class="col-md-4"><!-- Vino de Reserva --></div>
+    <div class="col-md-4"><!-- Nueva bebida --></div>
+  </section>
+  ```
+</Tip>

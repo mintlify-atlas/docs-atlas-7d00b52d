@@ -1,0 +1,94 @@
+---
+title: "Primeros pasos: ejecuta el sitio localmente"
+sidebarTitle: "Inicio Rápido"
+description: "Aprende a clonar, abrir y editar el sitio web Licorería Santo Pecado en tu entorno local sin necesidad de Node.js ni herramientas de compilación."
+---
+
+**Licorería Santo Pecado** es un sitio web estático de cero dependencias — no requiere Node.js, ni herramientas de compilación, ni gestor de paquetes. El proyecto consta únicamente de `index.html`, `styles.css` y una carpeta `assets/img/`. Basta con abrir el archivo HTML en cualquier navegador moderno para ver el sitio funcionando al instante.
+
+## Requisitos previos
+
+<CardGroup cols={2}>
+  <Card title="Navegador web moderno" icon="globe">
+    Chrome, Firefox, Edge o Safari en su versión reciente son suficientes para renderizar el sitio correctamente.
+  </Card>
+  <Card title="Editor de código" icon="code">
+    Se recomienda **VS Code** por su soporte de resaltado HTML/CSS y la extensión Live Server.
+  </Card>
+  <Card title="Git" icon="code-branch">
+    Opcional. Solo necesario si deseas clonar el repositorio desde la línea de comandos en lugar de descargar el ZIP.
+  </Card>
+  <Card title="Conexión a internet" icon="wifi">
+    Necesaria en la primera carga para descargar Bootstrap 5.3.3 desde CDN. Las visitas posteriores usan la caché del navegador.
+  </Card>
+</CardGroup>
+
+## Pasos para ejecutar el proyecto
+
+<Steps>
+  <Step title="Clona el repositorio">
+    Ejecuta el siguiente comando en tu terminal para descargar el proyecto:
+
+    ```bash
+    git clone https://github.com/marvinalban30/CSS3-avanzado-y-Bootstrap-5.git
+    ```
+  </Step>
+
+  <Step title="Navega al directorio del proyecto">
+    El archivo `index.html` se encuentra dentro del subdirectorio con espacios en el nombre. Usa comillas para que la terminal lo interprete correctamente:
+
+    ```bash
+    cd "CSS3-avanzado-y-Bootstrap-5/CSS3 avanzado y Bootstrap 5"
+    ```
+  </Step>
+
+  <Step title="Abre index.html en tu navegador">
+    Tienes tres formas de abrirlo según tu preferencia:
+
+    **Opción A — Explorador de archivos:** Haz doble clic sobre `index.html` en tu explorador de archivos. El sistema operativo lo abrirá con el navegador predeterminado.
+
+    **Opción B — Terminal:** Ejecuta el comando correspondiente a tu sistema operativo:
+
+    ```bash
+    # macOS
+    open index.html
+
+    # Linux
+    xdg-open index.html
+
+    # Windows
+    start index.html
+    ```
+
+    **Opción C — VS Code Live Server:** Abre la carpeta del proyecto en VS Code, instala la extensión [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer), haz clic derecho sobre `index.html` en el explorador de archivos del editor y selecciona **"Open with Live Server"**.
+  </Step>
+
+  <Step title="Edita y ve los cambios en tiempo real">
+    Abre `styles.css` o `index.html` en tu editor, guarda los cambios con <kbd>Ctrl</kbd>+<kbd>S</kbd> (o <kbd>Cmd</kbd>+<kbd>S</kbd> en macOS) y recarga el navegador con <kbd>F5</kbd> para verlos reflejados de inmediato. Si usas Live Server, la recarga es automática.
+  </Step>
+</Steps>
+
+## Alternativa: descarga directa
+
+Si prefieres no usar Git, puedes descargar el proyecto como archivo comprimido:
+
+1. Visita [https://github.com/marvinalban30/CSS3-avanzado-y-Bootstrap-5](https://github.com/marvinalban30/CSS3-avanzado-y-Bootstrap-5)
+2. Haz clic en el botón verde **"Code"** en la esquina superior derecha
+3. Selecciona **"Download ZIP"**
+4. Descomprime el archivo descargado en la ubicación que prefieras
+5. Abre el archivo `index.html` que se encuentra dentro de la carpeta `CSS3 avanzado y Bootstrap 5/`
+
+## Verificar que todo funciona
+
+Con el sitio abierto en el navegador, comprueba los siguientes elementos para confirmar que la página carga correctamente:
+
+- **Header:** Muestra el título "Licorería Santo Pecado" con texto en color dorado (`#ffcc00`) sobre fondo negro.
+- **Navbar responsiva:** Al reducir el ancho de la ventana por debajo de 768 px, la barra de navegación colapsa y aparece el botón hamburguesa (☰).
+- **Grid de productos:** Los tres productos — *Whisky Rojo*, *Ron Dorado* y *Vino de Reserva* — se muestran en columnas side-by-side en pantallas medianas y grandes.
+- **Efecto hover en cards:** Al pasar el cursor sobre cualquier card de producto, aparece un resplandor rojo difuso (`box-shadow: 0 0 15px rgba(255, 0, 0, 0.3)`) y la card escala ligeramente.
+- **Botón "Ver promociones":** Al hacer clic, la sección colapsable se expande mostrando la oferta del mes; un segundo clic la oculta.
+- **Validación del formulario:** Al intentar enviar el formulario de contacto con campos vacíos, el navegador muestra los mensajes de validación HTML5 (`required`) sin necesidad de JavaScript adicional.
+
+<Tip>
+  Instala la extensión **[Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)** de VS Code para habilitar la recarga automática del navegador cada vez que guardes un archivo. Esto agiliza enormemente el flujo de edición y elimina la necesidad de recargar manualmente la página tras cada cambio.
+</Tip>

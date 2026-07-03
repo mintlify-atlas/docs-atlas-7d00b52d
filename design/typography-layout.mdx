@@ -1,0 +1,85 @@
+---
+title: "Tipografía y Layout: Segoe UI con grid Bootstrap"
+sidebarTitle: "Tipografía y Layout"
+description: "Documentación del sistema tipográfico y de layout de Licorería Santo Pecado: fuente Segoe UI, jerarquía visual y grid de Bootstrap 5."
+---
+
+**Licorería Santo Pecado** combina una elección tipográfica pragmática y elegante —la fuente del sistema `Segoe UI`— con el robusto sistema de cuadrícula de Bootstrap 5 para construir un layout completamente responsivo. La tipografía asegura legibilidad en cualquier dispositivo sin penalizar la velocidad de carga; el grid divide el contenido en franjas visuales claras que se reorganizan automáticamente en pantallas pequeñas. Juntos, crean una experiencia coherente desde un smartphone hasta un monitor de escritorio.
+
+## Tipografía
+
+La fuente base se declara directamente en el selector `body`, estableciendo así el contexto tipográfico para toda la página mediante herencia CSS:
+
+```css styles.css
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+```
+
+**`'Segoe UI', sans-serif`** es un _stack_ de fuentes del sistema operativo: el navegador busca primero `Segoe UI` (fuente nativa de Windows 10/11), y si no está disponible —como ocurre en macOS o Linux— recurre a la fuente `sans-serif` predeterminada del sistema (San Francisco en macOS, Roboto en Android). Esta estrategia garantiza que el texto se renderice con la máxima nitidez posible en cada plataforma sin realizar ninguna descarga adicional de fuentes, manteniendo tiempos de carga óptimos.
+
+## Jerarquía visual
+
+Los encabezados forman el esqueleto semántico y visual de la página. Una única regla CSS aplica el tratamiento de color y sombra a los tres niveles de encabezado:
+
+```css styles.css
+h1, h2, h3 {
+  color: #ffcc00;
+  text-shadow: 1px 1px 3px #000;
+}
+```
+
+Cada nivel tiene un rol concreto dentro del documento:
+
+- **`h1` — "Licorería Santo Pecado"**: título de marca en el `<header>`, es el elemento de mayor jerarquía y el primero que lee el usuario al aterrizar en la página.
+- **`h2` — "Contáctanos"**: encabezado de sección dentro del `<main>`, separa los bloques de contenido y orienta al usuario en la navegación vertical.
+- **`h3` — "Whisky Rojo", "Ron Dorado", "Vino de Reserva"**: nombres de los productos dentro de cada tarjeta, tercer nivel de importancia que identifica cada ítem individualmente.
+
+El `text-shadow: 1px 1px 3px #000` añade una sombra negra de un píxel de desplazamiento diagonal con difuminado suave, suficiente para separar los caracteres dorados del fondo oscuro y mejorar la legibilidad sin un efecto visualmente agresivo.
+
+## Layout con Bootstrap Grid
+
+La sección de productos utiliza el sistema de cuadrícula de Bootstrap 5 para distribuir las tarjetas en tres columnas iguales con separación automática entre ellas:
+
+```html index.html
+<section id="productos" class="row g-4">
+  <div class="col-md-4">
+    <!-- Card de producto -->
+  </div>
+  <div class="col-md-4">
+    <!-- Card de producto -->
+  </div>
+  <div class="col-md-4">
+    <!-- Card de producto -->
+  </div>
+</section>
+```
+
+- **`row`** — activa el sistema flexbox de Bootstrap, convirtiendo al elemento en un contenedor de columnas con márgenes negativos compensatorios.
+- **`g-4`** — aplica un _gutter_ (espacio entre columnas y filas) de `1.5rem` en todos los lados, creando separación visual uniforme sin necesidad de márgenes manuales.
+- **`col-md-4`** — en pantallas medianas (`≥768px`) cada columna ocupa 4 de las 12 unidades del grid (33.33%). En pantallas más pequeñas (móviles), Bootstrap colapsa las columnas al ancho completo (100%), apilando las tarjetas verticalmente para una experiencia de desplazamiento cómoda.
+
+## Estructura vertical del layout
+
+La página se organiza en cuatro bloques semánticos HTML5 dispuestos verticalmente:
+
+<Steps>
+  <Step title="Header — Hero de la marca">
+    El `<header class="text-center text-white p-5 bg-dark">` ocupa todo el ancho de la ventana con padding generoso (`p-5` = 3rem) y centra tanto horizontal como verticalmente el `<h1>` con el nombre de la marca y el subtítulo "Tu tentación favorita en cada copa". Establece el tono visual antes de cualquier interacción.
+  </Step>
+  <Step title="Nav — Navegación sticky">
+    El `<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">` se ancla al borde superior de la ventana gracias a `sticky-top` y permanece visible al hacer scroll. En pantallas medianas o mayores muestra los enlaces horizontalmente; en móvil colapsa a un menú hamburguesa mediante el componente `navbar-toggler` de Bootstrap.
+  </Step>
+  <Step title="Main — Contenido principal centrado">
+    El `<main class="container py-5">` envuelve todo el contenido interactivo (productos y formulario de contacto) dentro del contenedor de Bootstrap, que limita el ancho y lo centra automáticamente. El utilitario `py-5` añade `3rem` de padding en los ejes superior e inferior, separando visualmente el contenido de la navegación y el footer.
+  </Step>
+  <Step title="Footer — Pie de página">
+    El `<footer class="text-center bg-light text-dark p-3 mt-5">` invierte la paleta al usar fondo claro (`bg-light`) y texto oscuro (`text-dark`), creando un remate visual que marca claramente el fin de la página. Contiene el copyright y los enlaces a redes sociales (`Facebook`, `Instagram`) estilizados con el rojo de la marca.
+  </Step>
+</Steps>
+
+<Info>
+  La clase `container` de Bootstrap limita el ancho máximo del contenido a aproximadamente **1140px** en pantallas grandes (`≥1200px`) y aplica márgenes automáticos a izquierda y derecha para mantener el bloque centrado. Esto evita que las líneas de texto se extiendan demasiado en monitores anchos, preservando la legibilidad óptima según los principios tipográficos de medida de línea (entre 60 y 80 caracteres por línea).
+</Info>
