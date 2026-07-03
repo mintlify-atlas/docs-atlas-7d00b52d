@@ -1,5 +1,5 @@
 ---
-title: "Grid Responsivo de Bootstrap 5 en el proyecto"
+title: "Grid Responsivo de Bootstrap 5 en Licorería Santo Pecado"
 sidebarTitle: "Grid Responsivo"
 description: "Cómo el sistema de grid de Bootstrap 5 organiza los productos en columnas responsivas que se apilan en móviles y se distribuyen en escritorio."
 ---
@@ -37,7 +37,7 @@ La clase `col-md-4` define el comportamiento responsivo de cada columna según e
 | Breakpoint | Clase | Ancho de columna | Columnas por fila |
 |---|---|---|---|
 | Extra Small (\<576px) | (sin clase) | 100% | 1 |
-| Small (\<768px) | (sin clase) | 100% | 1 |
+| Small (≥576px) | (sin clase) | 100% | 1 |
 | Medium (≥768px) | `col-md-4` | 33.3% | 3 |
 | Large (≥992px) | `col-md-4` | 33.3% | 3 |
 | Extra Large (≥1200px) | `col-md-4` | 33.3% | 3 |
@@ -70,7 +70,7 @@ El elemento `<main>` envuelve todo el contenido con un `container` que establece
 <main class="container py-5">
 ```
 
-- **`container`** — limita el ancho máximo del contenido según el breakpoint activo (por ejemplo, 960px en `md`, 1140px en `lg`) y centra el bloque con `margin-left: auto; margin-right: auto`. Garantiza que el contenido nunca quede pegado a los bordes de la pantalla.
+- **`container`** — limita el ancho máximo del contenido según el breakpoint activo (por ejemplo, 720px en `md`, 960px en `lg`) y centra el bloque con `margin-left: auto; margin-right: auto`. Garantiza que el contenido nunca quede pegado a los bordes de la pantalla.
 - **`py-5`** — agrega `padding-top: 3rem` y `padding-bottom: 3rem` al `<main>`, creando un espacio vertical generoso que separa el contenido de la navbar y del footer.
 
 <Tip>

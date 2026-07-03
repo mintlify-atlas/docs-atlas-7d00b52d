@@ -1,7 +1,7 @@
 ---
-title: "Estructura del Proyecto: archivos y directorios"
+title: "Estructura del Proyecto: archivos, directorios y HTML"
 sidebarTitle: "Estructura"
-description: "Explora la organización de archivos del proyecto Licorería Santo Pecado: index.html, styles.css y los assets de imagen."
+description: "Explora la organización de archivos de Licorería Santo Pecado: index.html, styles.css, assets de imagen y las secciones estructurales del HTML."
 ---
 
 El proyecto **Licorería Santo Pecado** adopta una estructura plana y minimalista: no hay sistemas de módulos, empaquetadores ni carpetas de dependencias. Todos los archivos fuente conviven en un único directorio raíz, lo que facilita la exploración, la edición directa y la distribución del sitio sin pasos de configuración previos.
@@ -54,7 +54,7 @@ El archivo `index.html` está compuesto por seis bloques estructurales clarament
     Un botón con `data-bs-toggle="collapse"` y `data-bs-target="#promo"` controla la visibilidad de un `<div class="collapse">` que contiene la oferta del mes: *"¡Este mes, en compras mayores a $50, recibe un shot gratis!"*. El panel utiliza `card card-body bg-dark text-white` y no requiere código JavaScript personalizado; el comportamiento lo gestiona Bootstrap 5 de forma nativa.
   </Accordion>
   <Accordion title="<footer> — Pie de página con redes sociales">
-    Muestra el aviso de copyright *© 2025 Licorería Santo Pecado* y dos enlaces de texto plano (sin URL definitiva) a **Facebook** e **Instagram**, separados por un carácter `|`. Los enlaces están estilizados en rojo (`color: #ff0000`) y muestran subrayado al pasar el cursor, definido en la regla `footer a:hover` de `styles.css`.
+    Muestra el aviso de copyright *© 2025 Licorería Santo Pecado* y dos enlaces de texto plano (sin URL definitiva) a **Facebook** e **Instagram**, separados por un carácter `|`. Aplica las clases `text-center bg-light text-dark p-3 mt-5`, lo que le da fondo claro y texto oscuro, diferenciándolo del resto del sitio. Los enlaces están estilizados en rojo (`color: #ff0000`) y muestran subrayado al pasar el cursor, definido en la regla `footer a:hover` de `styles.css`.
   </Accordion>
 </AccordionGroup>
 

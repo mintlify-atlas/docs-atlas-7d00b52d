@@ -1,7 +1,7 @@
 ---
-title: "Paleta de Colores: tema oscuro con rojo y dorado"
+title: "Paleta de Colores: tema oscuro con rojo carmesí y dorado"
 sidebarTitle: "Paleta de Colores"
-description: "Documentación completa de la paleta de colores de Licorería Santo Pecado: negro, rojo carmesí, dorado y grises oscuros."
+description: "Paleta de colores completa de Licorería Santo Pecado: negro absoluto, rojo carmesí, dorado y grises oscuros con sus valores hexadecimales exactos."
 ---
 
 La identidad visual de **Licorería Santo Pecado** se construye sobre un tema completamente oscuro que evoca el lujo, la noche y el misterio inherentes a la marca. El **negro absoluto** como fondo sitúa al usuario en un ambiente íntimo y elegante; el **rojo carmesí** inyecta energía, urgencia y audacia en cada punto de interacción; y el **dorado** eleva la percepción de premium en títulos y elementos de navegación. Los grises oscuros (`#1a1a1a`, `#222`) actúan como fondos secundarios que separan secciones sin romper la atmósfera nocturna. Esta combinación cromática es inseparable del concepto "Santo Pecado": tentadora, suntuosa y memorable.
@@ -32,6 +32,7 @@ La siguiente tabla consolida cada selector de `styles.css` con su valor de color
 | `body` background | `#000000` | Fondo de página |
 | `h1, h2, h3` | `#ffcc00` | Texto de titulares |
 | `.navbar-brand` | `#ff0000` | Logo en navbar |
+| `.nav-link` | `#ffffff` | Nav links normales |
 | `.nav-link:hover` | `#ffcc00` | Nav link activo |
 | `.btn-primary` | `#cc0000` | Botón normal |
 | `.btn-primary:hover` | `#ff0000` | Botón hover |
@@ -53,5 +54,5 @@ La paleta trabaja con dos pares de contraste intencionales que comunican mensaje
 **Negro + Rojo** — El rojo sobre negro evoca audacia, peligro controlado y deseo, conceptos perfectamente alineados con el nombre "Santo Pecado". Este par domina en los elementos de interacción (botones, bordes de cards, efectos de foco), transmitiendo que actuar —hacer clic, explorar, contactar— tiene emoción y consecuencias deliciosas.
 
 <Note>
-  Las clases de Bootstrap `bg-dark` (equivalente a `#212529`) y `text-warning` (equivalente a `#ffc107`) también aparecen en el HTML —en el `<header>`, la `<nav>` y el bloque de promociones— y son visualmente consistentes con la paleta personalizada del proyecto: `#212529` es prácticamente indistinguible del negro puro en pantalla, y `#ffc107` es tan cercano al dorado `#ffcc00` que el ojo humano no percibe la diferencia a tamaños normales de texto.
+  Las clases de Bootstrap `bg-dark` (equivalente a `#212529`) también aparecen en el HTML —en el `<header>`, la `<nav>` y el bloque de promociones— y son visualmente consistentes con el negro puro de la paleta personalizada. El elemento `.navbar-brand` en el HTML lleva adicionalmente la clase `text-warning` de Bootstrap, pero la regla `color: #ff0000 !important` de `styles.css` la sobreescribe, resultando en el rojo de marca (`#ff0000`) que se muestra en pantalla.
 </Note>

@@ -15,7 +15,7 @@ description: "Cómo publicar Licorería Santo Pecado en GitHub Pages, Netlify o 
   <Card title="Netlify" icon="cloud">
     Soporta deploy mediante arrastrar y soltar la carpeta del proyecto, o conexión continua a GitHub para publicar automáticamente en cada push a la rama principal.
   </Card>
-  <Card title="Vercel" icon="triangle">
+  <Card title="Vercel" icon="rocket">
     Deploy automático desde GitHub con generación de URL de previsualización por cada rama o pull request, ideal para revisar cambios antes de publicar en producción.
   </Card>
 </CardGroup>
@@ -34,7 +34,7 @@ GitHub Pages es la opción más directa si el proyecto ya se encuentra en un rep
   </Step>
 
   <Step title="Configura la rama de publicación">
-    En la sección **Branch**, selecciona `main` como rama fuente y la carpeta `/root` como directorio de publicación. Haz clic en **Save**.
+    En la sección **Branch**, selecciona `main` como rama fuente y la carpeta `/ (root)` como directorio de publicación. Haz clic en **Save**.
   </Step>
 
   <Step title="Guarda los cambios">
@@ -53,7 +53,7 @@ GitHub Pages es la opción más directa si el proyecto ya se encuentra en un rep
 </Steps>
 
 <Note>
-  El archivo `index.html` del proyecto se encuentra dentro del subdirectorio `CSS3 avanzado y Bootstrap 5/`, no en la raíz del repositorio. Para que GitHub Pages lo sirva correctamente desde `/root`, considera mover los archivos (`index.html`, `styles.css` y la carpeta `assets/`) a la raíz del repositorio, o utilizar la carpeta `/docs` como directorio de publicación si reorganizas el proyecto de esa forma.
+  El archivo `index.html` del proyecto se encuentra dentro del subdirectorio `CSS3 avanzado y Bootstrap 5/`, no en la raíz del repositorio. Para que GitHub Pages lo sirva correctamente con la opción `/ (root)`, considera mover los archivos (`index.html`, `styles.css` y la carpeta `assets/`) a la raíz del repositorio, o utilizar la carpeta `/docs` como directorio de publicación si reorganizas el proyecto de esa forma.
 </Note>
 
 ## Netlify (Drag & Drop)
